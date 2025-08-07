@@ -1,13 +1,19 @@
-import HeroSection from "@/components/HeroSection";
-import ProcessSection from "@/components/ProcessSection";
-import TechnologiesSection from "@/components/TechnologiesSection";
+import CinematicHero from "@/components/CinematicHero";
+import ProblemSection from "@/components/ProblemSection";
+import ProcessJourney from "@/components/ProcessJourney";
+import BenefitsSection from "@/components/BenefitsSection";
+import TechOrchestra from "@/components/TechOrchestra";
+import FinalCTA from "@/components/FinalCTA";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <HeroSection />
-      <ProcessSection />
-      <TechnologiesSection />
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <CinematicHero />
+      <ProblemSection />
+      <ProcessJourney />
+      <BenefitsSection />
+      <TechOrchestra />
+      <FinalCTA />
     </div>
   );
 };
