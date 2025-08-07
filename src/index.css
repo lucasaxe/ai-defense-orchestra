@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Cybersecurity Command Center Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Mode Cybersecurity Theme */
+    --background: 222 14% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 14% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 14% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* NVIDIA Green as primary */
+    --primary: 84 100% 36%;
+    --primary-foreground: 222 14% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Cyber Blue for secondary */
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 222 14% 6%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 14% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 222 14% 6%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 222 14% 15%;
+    --input: 222 14% 12%;
+    --ring: 84 100% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom Cybersecurity Colors */
+    --nvidia-green: 84 100% 36%;
+    --cyber-blue: 195 100% 50%;
+    --dark-slate: 222 14% 6%;
+    --medium-slate: 222 14% 12%;
+    --light-slate: 222 14% 18%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222 14% 6%), hsl(222 14% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(222 14% 8%), hsl(222 14% 10%));
+    --gradient-nvidia: linear-gradient(135deg, hsl(84 100% 36%), hsl(84 80% 45%));
+    --gradient-cyber: linear-gradient(135deg, hsl(195 100% 50%), hsl(195 80% 60%));
+    --gradient-glow: linear-gradient(90deg, transparent, hsl(84 100% 36% / 0.2), transparent);
+    
+    /* Shadows */
+    --shadow-nvidia: 0 0 30px hsl(84 100% 36% / 0.3);
+    --shadow-cyber: 0 0 30px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(222 14% 4% / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.4s ease-in-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +126,114 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-title {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-tight;
+    background: var(--gradient-nvidia);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .hero-subtitle {
+    @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+  }
+  
+  /* CTA Button Styles */
+  .btn-hero {
+    @apply px-8 py-4 rounded-xl font-semibold text-lg;
+    background: var(--gradient-nvidia);
+    transition: var(--transition-glow);
+    box-shadow: var(--shadow-nvidia);
+  }
+  
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px hsl(84 100% 36% / 0.5);
+  }
+  
+  /* Card Styles */
+  .cyber-card {
+    @apply rounded-2xl p-6 backdrop-blur-sm border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+  
+  .cyber-card:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: var(--shadow-card), 0 0 20px hsl(84 100% 36% / 0.2);
+  }
+  
+  /* Animation Classes */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .agent-orbit {
+    animation: agent-orbit 8s linear infinite;
+  }
+  
+  /* Tech Logo Styles */
+  .tech-logo {
+    @apply opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0;
+  }
+  
+  .tech-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px hsl(84 100% 36% / 0.3));
+  }
+}
+
+@layer utilities {
+  /* Gradient Text Utilities */
+  .text-gradient-nvidia {
+    background: var(--gradient-nvidia);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-cyber {
+    background: var(--gradient-cyber);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Animation Keyframes */
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 20px hsl(84 100% 36% / 0.3); }
+    100% { box-shadow: 0 0 40px hsl(84 100% 36% / 0.6); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes agent-orbit {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+  
+  @keyframes slide-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 }
